@@ -1,0 +1,47 @@
+import React, { useState } from 'react';
+import {Component} from 'react';
+//import logo from './logo.svg';
+import './App.css';
+import Person from './Person/Person';
+
+
+// Below is the older way of creating react Components where we extend from Component class.
+//function App() {
+class App extends Component {
+  state = {
+    persons: [
+      {name: 'Max', age: 30},
+      {name: 'Manu', age: 28},
+      {name: 'MadMax', age: 26}
+    ],
+    somethingElse: 'Not touched in setState'
+  };
+
+  switchHandler  = () => {
+    //console.log("Clicked!");
+    //this.state.persons[1].name = 'Maximus'; DONT DO THIS
+    this.setState({
+      persons: [
+        {name: 'Max', age: 30},
+        {name: 'Maximus', age: 28},
+        {name: 'MadMax', age: 26}
+      ]
+    });
+  };
+
+  render() {
+  return (
+     <div className="App">
+     <h1> My First React App </h1>
+     <p> This is working! </p>
+     <button onClick={this.switchHandler}> switch </button>
+     <Person name={this.state.persons[0].name} age={this.state.persons[0].age} > I am a random person </Person>
+     <Person name={this.state.persons[1].name}  age={this.state.persons[1].age} > i am a piece of shit </Person>
+     <Person name={this.state.persons[2].name} age={this.state.persons[2].age} > I like racing! </Person>
+    </div>
+  );
+  //React.createElement('div', {className: 'App'}, React.createElement('h1', {className: 'App'}, 'My First React App!') ) )
+}
+}
+
+export default App;
